@@ -27,8 +27,8 @@ public class SwaggerConfig {
 	}
 
 	private ApiInfo apiEndPointsInfo() {
-		return new ApiInfoBuilder().title("Tioga Security MVP Services REST API").description("Tioga Security MVP REST API")
-				.contact(new Contact("Scott Davidson", "www.tiogasecurity.com", "scottd@tiogasecurity.com"))
+		return new ApiInfoBuilder().title("Rememberer Services REST API").description("Rememberer Services MVP REST API")
+				.contact(new Contact("Ian Davidson", "github.com/iandavidson/Rememberer-Services", "ianmattdavidson@gmail.com"))
 				.license("Apache 2.0").licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html").version("0.0.1")
 				.build();
 	}

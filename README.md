@@ -31,6 +31,9 @@ Web Service used email reminders for who ever, when ever.
    - `mvn clean install`
    - `java -jar -D<condition> target/reminderer-services-0.0.1-SNAPSHOT.jar`
    
+### Look at SwaggerUI while system is running:
+- `http://localhost:8081/swagger-ui.html#/`   
+   
 # Contact me:
 
 If you want to contribute to this project shoot me an email: Ianmattdavidson@gmail.com
