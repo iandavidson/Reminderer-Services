@@ -11,6 +11,5 @@ public class Tenant {
 	private Long id;
 	private String name;
 	private String reportEmailAddress;
-	private String phoneNumber;
 }
 

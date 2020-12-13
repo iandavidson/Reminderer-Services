@@ -25,7 +25,6 @@ public class Tenant {
 	
 	private String name;
 	private String reportEmailAddress;
-	private String phoneNumber;
 	
 	
 }
