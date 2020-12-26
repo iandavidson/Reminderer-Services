@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.reminderer.remindererservices.service.TenantService;
+import com.reminderer.remindererservices.service.tenant.TenantService;
 import com.reminderer.remindererservices.web.dto.tenant.Tenant;
 import com.reminderer.remindererservices.web.dto.tenant.TenantDtoFactory;
 

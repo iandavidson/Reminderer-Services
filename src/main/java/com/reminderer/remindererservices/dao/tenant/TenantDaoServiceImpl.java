@@ -6,7 +6,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.reminderer.remindererservices.service.TenantDaoService;
+import com.reminderer.remindererservices.service.tenant.TenantDaoService;
 
 
 @Service
@@ -21,7 +21,7 @@ public class TenantDaoServiceImpl implements TenantDaoService {
 	}
 	
 	@Override
-	public  com.reminderer.remindererservices.service.Tenant getTenantById(Long tenantId) {
+	public  com.reminderer.remindererservices.service.tenant.Tenant getTenantById(Long tenantId) {
 		if(tenantId == null) {
 			throw new IllegalArgumentException("TenantId does not exist.");
 		}
@@ -36,10 +36,10 @@ public class TenantDaoServiceImpl implements TenantDaoService {
 	}
 
 	@Override
-	public List<com.reminderer.remindererservices.service.Tenant> getTenantsBulk() {
+	public List<com.reminderer.remindererservices.service.tenant.Tenant> getTenantsBulk() {
 		List<Tenant> tenantDaos = tenantRepository.findAll();
 		
-		List<com.reminderer.remindererservices.service.Tenant> tenants = new ArrayList<>();
+		List<com.reminderer.remindererservices.service.tenant.Tenant> tenants = new ArrayList<>();
 				
 		tenantDaos.forEach(tenant -> tenants.add(tenantDaoFactory.toTenant(tenant)));
 		
