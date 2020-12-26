@@ -6,6 +6,6 @@ CREATE TABLE tenant (
   report_email_address VARCHAR(256) NOT NULL
 );
 
-INSERT INTO tenant (name, report_email) VALUES
+INSERT INTO tenant (name, report_email_address) VALUES
   ('Ian', 'ianmattdavidson@gmail.com'),
   ('Tyler', 'dongloader@gmail.com');
