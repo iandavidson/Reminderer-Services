@@ -11,7 +11,7 @@ import com.reminderer.remindererservices.service.util.TenantId;
 @Component
 public class ScheduleDescriptorDaoFactory {
 
-	com.reminderer.remindererservices.service.schedule.ScheduleDescriptor toScheduleDescriptor(
+	public com.reminderer.remindererservices.service.schedule.ScheduleDescriptor toScheduleDescriptor(
 			ScheduleDescriptor scheduleDescriptorDao) {
 		return com.reminderer.remindererservices.service.schedule.ScheduleDescriptor.builder()
 				.creationDate(scheduleDescriptorDao.getCreationDate()).id(scheduleDescriptorDao.getId())
@@ -19,14 +19,14 @@ public class ScheduleDescriptorDaoFactory {
 				.schedule(scheduleDescriptorDao.getSchedule()).build();
 	}
 
-	ScheduleDescriptor toScheduleDescriptorDao(
+	public ScheduleDescriptor toScheduleDescriptorDao(
 			com.reminderer.remindererservices.service.schedule.ScheduleDescriptor scheduleDescriptor, Tenant tenant) {
 		return ScheduleDescriptor.builder().creationDate(scheduleDescriptor.getCreationDate())
 				.id(scheduleDescriptor.getId()).tenant(tenant).schedule(scheduleDescriptor.getSchedule()).build();
 
 	}
 
-	List<com.reminderer.remindererservices.service.schedule.ScheduleDescriptor> toScheduleDescriptors(
+	public List<com.reminderer.remindererservices.service.schedule.ScheduleDescriptor> toScheduleDescriptors(
 			List<ScheduleDescriptor> scheduleDescriptorDaos) {
 		List<com.reminderer.remindererservices.service.schedule.ScheduleDescriptor> scheduleDescriptors = new ArrayList<>();
 
