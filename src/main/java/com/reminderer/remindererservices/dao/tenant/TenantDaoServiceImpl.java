@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.reminderer.remindererservices.service.tenant.TenantDaoService;
 import com.reminderer.remindererservices.service.util.TenantId;
 
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 public class TenantDaoServiceImpl implements TenantDaoService {
@@ -59,6 +60,29 @@ public class TenantDaoServiceImpl implements TenantDaoService {
 		
 		return tenantDaoFactory.toTenantId(tenantDao.getId());
 		
+	}
+
+	@Override
+	public Boolean deleteTenant(Long tenantId) {
+		// log.debug("Made it into deleteTenant; id: " + tenantId);
+		
+		//need to do a better job of determining that the entity was removed.
+		
+		
+		if(tenantId == null) {
+			// log.info("Id passed into method is null");
+			throw new IllegalArgumentException("Id object passed in is null");
+		}
+		
+		this.tenantRepository.deleteById(tenantId);
+
+		Optional<Tenant> optionalTenant = tenantRepository.findById(tenantId);
+		
+		if(optionalTenant.isEmpty()) {
+			return Boolean.TRUE;
+		} else {
+			return Boolean.FALSE;
+		}
 	}
 
 }

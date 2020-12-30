@@ -35,7 +35,11 @@ public class TenantServiceImpl implements TenantService {
 		
 	}	
 	
-	
+	@Override
+	public Boolean deleteTenant(Long tenantId) {
+		return tenantDaoService.deleteTenant(tenantId);
+		
+	}	
 	
 	
 }

@@ -11,4 +11,6 @@ public interface TenantDaoService {
 	List<Tenant> getTenantsBulk();
 	
 	TenantId createTenant(Tenant tenant);
+
+	Boolean deleteTenant(Long tenantId);
 }
