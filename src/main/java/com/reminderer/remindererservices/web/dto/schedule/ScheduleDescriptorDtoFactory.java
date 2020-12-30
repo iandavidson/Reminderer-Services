@@ -12,6 +12,10 @@ public class ScheduleDescriptorDtoFactory {
 
 	public ScheduleDescriptor toScheduleDescriptorDto(
 			com.reminderer.remindererservices.service.schedule.ScheduleDescriptor scheduleDescriptor) {
+		if(scheduleDescriptor == null) {
+			return null;
+		}
+		
 		return ScheduleDescriptor.builder()
 				.creationDate(scheduleDescriptor.getCreationDate())
 				.id(scheduleDescriptor.getId())
