@@ -34,12 +34,7 @@ public class TenantController {
 		this.tenantDtoFactory = tenantDtoFactory;
 	}
 
-//	@CrossOrigin(origins = { "*" })
-//	@PostMapping()
-//	public ResponseEntity<Tenant> createTenant(Tenant newTenant){
-//		
-//	}
-//	
+
 	@CrossOrigin(origins = { "*" })
 	@GetMapping()
 	public ResponseEntity<List<Tenant>> getTenantsBulk() {
@@ -67,14 +62,12 @@ public class TenantController {
 
 		TenantId id = tenantService.createTenant(tenantDtoFactory.toTenant(tenant));
 
-		// build url to get that the tenant successfully persisted, put in response
-		// Header
 
 		if (id.getId() == null || id.getId() == -1) {
 			return new ResponseEntity<String>("Failed to persist tenant", HttpStatus.BAD_REQUEST);
 		}
 
-		return new ResponseEntity<String>("Successfully persisted tenant", HttpStatus.CREATED);
+		return new ResponseEntity<String>("api/tenants/" + id.getId(), HttpStatus.CREATED);
 
 	}
 
