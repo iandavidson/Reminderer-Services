@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.reminderer.remindererservices.service.tenant.TenantDaoService;
+import com.reminderer.remindererservices.service.util.TenantId;
 
 
 @Service
@@ -44,6 +45,20 @@ public class TenantDaoServiceImpl implements TenantDaoService {
 		tenantDaos.forEach(tenant -> tenants.add(tenantDaoFactory.toTenant(tenant)));
 		
 		return tenants;
+	}
+
+	@Override
+	public TenantId createTenant(com.reminderer.remindererservices.service.tenant.Tenant tenant) {
+		Tenant tenantDao = tenantDaoFactory.toTenantDao(tenant);
+		
+		tenantRepository.save(tenantDao);
+		
+		if(tenantDao.getId() == null) {
+			throw new IllegalArgumentException("Tenant successfully persisted, but id value is still null, exiting");
+		}
+		
+		return tenantDaoFactory.toTenantId(tenantDao.getId());
+		
 	}
 
 }

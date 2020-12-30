@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.reminderer.remindererservices.service.util.TenantId;
+
 @Service
 public class TenantServiceImpl implements TenantService {
 	
@@ -24,6 +26,16 @@ public class TenantServiceImpl implements TenantService {
 	@Override
 	public List<Tenant> getTenantsBulk() {
 		return tenantDaoService.getTenantsBulk();
+	}
+
+
+	@Override
+	public TenantId createTenant(Tenant tenant) {
+		return tenantDaoService.createTenant(tenant);
+		
 	}	
+	
+	
+	
 	
 }
