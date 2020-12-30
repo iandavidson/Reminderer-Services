@@ -7,10 +7,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.reminderer.remindererservices.service.TenantService;
+import com.reminderer.remindererservices.service.tenant.TenantService;
+import com.reminderer.remindererservices.service.util.TenantId;
 import com.reminderer.remindererservices.web.dto.tenant.Tenant;
 import com.reminderer.remindererservices.web.dto.tenant.TenantDtoFactory;
 
@@ -39,19 +42,39 @@ public class TenantController {
 //	
 	@CrossOrigin(origins = { "*" })
 	@GetMapping()
-	public ResponseEntity<List<Tenant>> getTenantsBulk(){
+	public ResponseEntity<List<Tenant>> getTenantsBulk() {
 		log.info("Made it into getTenantsBulk()");
-		
-		return new ResponseEntity<List<Tenant>>(tenantDtoFactory.toTenantDtos(tenantService.getTenantsBulk()), HttpStatus.OK);
-		
+
+		return new ResponseEntity<List<Tenant>>(tenantDtoFactory.toTenantDtos(tenantService.getTenantsBulk()),
+				HttpStatus.OK);
+
 	}
 
 	@CrossOrigin(origins = { "*" })
 	@GetMapping("/{tenantId}")
 	public ResponseEntity<Tenant> getTenantById(@PathVariable("tenantId") Long tenantId) {
 		log.info("Made it into getTenantById; id: " + tenantId);
-		
-		return new ResponseEntity<Tenant>(tenantDtoFactory.toTenantDto(tenantService.getTenantById(tenantId)), HttpStatus.BAD_REQUEST);
+
+		return new ResponseEntity<Tenant>(tenantDtoFactory.toTenantDto(tenantService.getTenantById(tenantId)),
+				HttpStatus.OK);
+
+	}
+
+	@CrossOrigin(origins = { "*" })
+	@PostMapping()
+	public ResponseEntity<String> createTenant(@RequestBody Tenant tenant) {
+		log.info("Made it into createTenant(); Tenant = " + tenant);
+
+		TenantId id = tenantService.createTenant(tenantDtoFactory.toTenant(tenant));
+
+		// build url to get that the tenant successfully persisted, put in response
+		// Header
+
+		if (id.getId() == null || id.getId() == -1) {
+			return new ResponseEntity<String>("Failed to persist tenant", HttpStatus.BAD_REQUEST);
+		}
+
+		return new ResponseEntity<String>("Successfully persisted tenant", HttpStatus.CREATED);
 
 	}
 

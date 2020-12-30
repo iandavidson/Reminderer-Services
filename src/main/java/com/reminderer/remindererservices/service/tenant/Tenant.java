@@ -1,4 +1,4 @@
-package com.reminderer.remindererservices.service;
+package com.reminderer.remindererservices.service.tenant;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
