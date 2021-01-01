@@ -33,6 +33,7 @@ public class ScheduleDescriptor {
 	private Long id;
 	
 	private String schedule;
+	private String reminder;
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "tenant_id", referencedColumnName = "id")

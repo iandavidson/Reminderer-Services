@@ -16,13 +16,14 @@ public class ScheduleDescriptorDaoFactory {
 		return com.reminderer.remindererservices.service.schedule.ScheduleDescriptor.builder()
 				.creationDate(scheduleDescriptorDao.getCreationDate()).id(scheduleDescriptorDao.getId())
 				.tenantId(TenantId.builder().id(scheduleDescriptorDao.getId()).build())
-				.schedule(scheduleDescriptorDao.getSchedule()).build();
+				.schedule(scheduleDescriptorDao.getSchedule())
+				.reminder(scheduleDescriptorDao.getReminder()).build();
 	}
 
 	public ScheduleDescriptor toScheduleDescriptorDao(
 			com.reminderer.remindererservices.service.schedule.ScheduleDescriptor scheduleDescriptor, Tenant tenant) {
 		return ScheduleDescriptor.builder().creationDate(scheduleDescriptor.getCreationDate())
-				.id(scheduleDescriptor.getId()).tenant(tenant).schedule(scheduleDescriptor.getSchedule()).build();
+				.id(scheduleDescriptor.getId()).tenant(tenant).schedule(scheduleDescriptor.getSchedule()).reminder(scheduleDescriptor.getReminder()).build();
 
 	}
 

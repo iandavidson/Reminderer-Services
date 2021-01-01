@@ -20,6 +20,7 @@ public class ScheduleDescriptorDtoFactory {
 				.creationDate(scheduleDescriptor.getCreationDate())
 				.id(scheduleDescriptor.getId())
 				.schedule(scheduleDescriptor.getSchedule())
+				.reminder(scheduleDescriptor.getReminder())
 				.tenantId(TenantId.builder().id(scheduleDescriptor.getTenantId().getId()).build())
 				.build();
 	}
@@ -30,6 +31,7 @@ public class ScheduleDescriptorDtoFactory {
 				.creationDate(scheduleDescriptor.getCreationDate())
 				.id(scheduleDescriptor.getId())
 				.schedule(scheduleDescriptor.getSchedule())
+				.reminder(scheduleDescriptor.getReminder())
 				.tenantId(com.reminderer.remindererservices.service.util.TenantId.builder()
 						.id(scheduleDescriptor.getTenantId().getId()).build())
 				.build();
