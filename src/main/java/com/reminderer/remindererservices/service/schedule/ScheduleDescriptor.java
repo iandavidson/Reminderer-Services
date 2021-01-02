@@ -16,6 +16,8 @@ public class ScheduleDescriptor {
 
 	private String schedule;
 
+	private String reminder;
+
 	private TenantId tenantId;
 
 	private LocalDateTime creationDate;

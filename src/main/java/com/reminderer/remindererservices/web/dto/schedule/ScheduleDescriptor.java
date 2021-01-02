@@ -16,6 +16,7 @@ import lombok.NoArgsConstructor;
 public class ScheduleDescriptor {
 	private Long id;
 	private String schedule;
+	private String reminder;
 	private LocalDateTime creationDate;
 	private TenantId tenantId;
 }

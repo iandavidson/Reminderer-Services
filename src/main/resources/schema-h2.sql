@@ -7,12 +7,13 @@ CREATE TABLE tenant (
   primary key (id)
 );
 
-DROP TABLE IF EXISTS schedule_descriptor;
+DROP TABLE IF EXISTS scheduleDescriptor;
 
   
 CREATE TABLE `schedule_descriptor` (
   id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   schedule varchar(64) NOT NULL DEFAULT '',
+  reminder varchar(256) NOT NULL DEFAULT '',
   tenant_id bigint(20) unsigned NOT NULL,
   creation_date timestamp NOT NULL,
   PRIMARY KEY (`id`),
