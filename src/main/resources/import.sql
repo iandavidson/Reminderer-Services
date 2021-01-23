@@ -22,4 +22,3 @@ CREATE TABLE `schedule_descriptor` (
 );
 
 
-

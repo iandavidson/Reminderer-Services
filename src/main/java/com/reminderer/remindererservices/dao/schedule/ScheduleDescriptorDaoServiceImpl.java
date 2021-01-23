@@ -1,5 +1,6 @@
 package com.reminderer.remindererservices.dao.schedule;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,10 +25,37 @@ public class ScheduleDescriptorDaoServiceImpl implements ScheduleDescriptorDaoSe
 		this.scheduleDescriptorRepository = scheduleDescriptorRepository;
 		this.scheduleDescriptorDaoFactory = scheduleDescriptorDaoFactory;
 		this.tenantRepository = tenantRepository;
+		this.initializeScheduleDescriptors();
+	}
+
+	protected void initializeScheduleDescriptors() {
+
+		List<ScheduleDescriptor> scheduleDescriptors = new ArrayList<>();
+		scheduleDescriptors.add(ScheduleDescriptor.builder().id(Long.valueOf(1)).schedule("0 */3 * * * *")
+				.reminder("Wow neato").build());
+
+		scheduleDescriptors.add(ScheduleDescriptor.builder().id(Long.valueOf(2)).schedule("0 1 11 ? * *")
+				.reminder("Good job sport!").build());
+		
+		scheduleDescriptors.add(ScheduleDescriptor.builder().id(Long.valueOf(3)).schedule("'0 1 3 ? * *")
+				.reminder("Feed Scappy!").build());
+		
+		scheduleDescriptors.add(ScheduleDescriptor.builder().id(Long.valueOf(3)).schedule("'0 4 3 ? * *")
+				.reminder("Feed Coco!").build());
+		
+		
+		scheduleDescriptorRepository.saveAll(scheduleDescriptors);
+		// jam this into the repository on startup b/c I can't get data initialized i na
+		// .sql file. :P
+//		INSERT INTO schedule_descriptor (schedule, reminder, tenant_id) VALUES
+//		  ('0 */3 * * * *', 'Wow neato', 1),
+//		  ('0 1 11 ? * *', 'Good job sport!', 2),
+//		  ('0 1 3 ? * *', 'Feed Scappy & Coco!', 3);
+
 	}
 
 	@Override
-	public List<com.reminderer.remindererservices.service.schedule.ScheduleDescriptor> fetchAllScheduleDescriptors() {
+	public List<com.reminderer.remindererservices.service.schedule.ScheduleDescriptor> getAllScheduleDescriptors() {
 		log.debug("Made it into fetchAllScheduleDescriptors");
 		List<com.reminderer.remindererservices.service.schedule.ScheduleDescriptor> scheduleDescriptors = scheduleDescriptorDaoFactory
 				.toScheduleDescriptors(this.scheduleDescriptorRepository.findAll());
@@ -61,38 +89,37 @@ public class ScheduleDescriptorDaoServiceImpl implements ScheduleDescriptorDaoSe
 	}
 
 	@Override
-	public com.reminderer.remindererservices.service.schedule.ScheduleDescriptor fetchScheduleDescriptorById(Long id) {
+	public com.reminderer.remindererservices.service.schedule.ScheduleDescriptor getScheduleDescriptorById(Long id) {
 		log.debug("Made it into fetchScheduleDescriptorById; id: " + id);
 		Optional<ScheduleDescriptor> optionalScheduleDescriptorDao = this.scheduleDescriptorRepository.findById(id);
 
 		if (optionalScheduleDescriptorDao.isEmpty()) {
 			log.info("fetchScheduleDescriptorById: Could not find ScheduleDescriptor at id: " + id);
-			return null;
+			throw new IllegalArgumentException("Could not find ScheduleDescriptor at id:" + id );
 		}
 
 		com.reminderer.remindererservices.service.schedule.ScheduleDescriptor scheduleDescriptor = this.scheduleDescriptorDaoFactory
 				.toScheduleDescriptor(optionalScheduleDescriptorDao.get());
 
 		return scheduleDescriptor;
-		
+
 	}
 
 	@Override
 	public Boolean deleteScheduleDescriptor(Long id) {
 		log.debug("Made it into deleteScheduleDescriptor; id: " + id);
-		
-		//need to do a better job of determining that the entity was removed.
-		
-		
-		if(id == null) {
+
+		// need to do a better job of determining that the entity was removed.
+
+		if (id == null) {
 			log.info("Id passed into method is null");
 			throw new IllegalArgumentException("Id object passed in is null");
 		}
-		
+
 		this.scheduleDescriptorRepository.deleteById(id);
 
 		return Boolean.TRUE;
-		
+
 	}
 
 }

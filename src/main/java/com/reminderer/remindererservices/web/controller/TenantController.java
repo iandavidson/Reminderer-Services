@@ -72,7 +72,6 @@ public class TenantController {
 
 	}
 
-	@SuppressWarnings("rawtypes")
 	@CrossOrigin(origins = { "*" })
 	@DeleteMapping("/{tenantId}")
 	public ResponseEntity<String> deleteTenant(@PathVariable("tenantId") Long tenantId) {
@@ -81,9 +80,9 @@ public class TenantController {
 		Boolean success = tenantService.deleteTenant(tenantId);
 
 		if(success != null && success) {
-			return new ResponseEntity(HttpStatus.OK);
+			return new ResponseEntity<String>(HttpStatus.OK);
 		} else {
-			return new ResponseEntity(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
 	}
 

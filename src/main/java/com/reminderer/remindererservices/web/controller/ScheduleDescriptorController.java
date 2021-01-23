@@ -39,7 +39,7 @@ public class ScheduleDescriptorController {
 	public ResponseEntity<List<ScheduleDescriptor>> getScheduleDescriptorsBulk() {
 
 		List<ScheduleDescriptor> scheduleDescriptors = this.scheduleDescriptorDtoFactory
-				.toScheduleDescriptors(this.scheduleDescriptorService.fetchAllScheduleDescriptors());
+				.toScheduleDescriptors(this.scheduleDescriptorService.getAllScheduleDescriptors());
 
 		return new ResponseEntity<List<ScheduleDescriptor>>(scheduleDescriptors, HttpStatus.OK);
 
@@ -50,7 +50,7 @@ public class ScheduleDescriptorController {
 	public ResponseEntity<ScheduleDescriptor> getScheduleDescriptorById(@PathVariable("id") Long id) {
 		log.info("Made it into getScheduleDescriptorById; id: " + id);
 		ScheduleDescriptor scheduleDescriptor = scheduleDescriptorDtoFactory
-				.toScheduleDescriptorDto(this.scheduleDescriptorService.fetchScheduleDescriptorById(id));
+				.toScheduleDescriptorDto(this.scheduleDescriptorService.getScheduleDescriptorById(id));
 
 		if (scheduleDescriptor == null) {
 			return new ResponseEntity<ScheduleDescriptor>(scheduleDescriptor, HttpStatus.BAD_REQUEST);
