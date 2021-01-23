@@ -19,13 +19,13 @@ public class ScheduleDescriptorServiceImpl implements ScheduleDescriptorService 
 	}
 
 	@Override
-	public List<ScheduleDescriptor> fetchAllScheduleDescriptors() {
-		return this.scheduleDescriptorDaoService.fetchAllScheduleDescriptors();
+	public List<ScheduleDescriptor> getAllScheduleDescriptors() {
+		return this.scheduleDescriptorDaoService.getAllScheduleDescriptors();
 	}
 
 	@Override
-	public ScheduleDescriptor fetchScheduleDescriptorById(Long id) {
-		return this.scheduleDescriptorDaoService.fetchScheduleDescriptorById(id);
+	public ScheduleDescriptor getScheduleDescriptorById(Long id) {
+		return this.scheduleDescriptorDaoService.getScheduleDescriptorById(id);
 	}
 
 	@Override

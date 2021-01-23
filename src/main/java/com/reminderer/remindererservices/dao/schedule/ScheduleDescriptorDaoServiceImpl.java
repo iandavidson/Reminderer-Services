@@ -55,7 +55,7 @@ public class ScheduleDescriptorDaoServiceImpl implements ScheduleDescriptorDaoSe
 	}
 
 	@Override
-	public List<com.reminderer.remindererservices.service.schedule.ScheduleDescriptor> fetchAllScheduleDescriptors() {
+	public List<com.reminderer.remindererservices.service.schedule.ScheduleDescriptor> getAllScheduleDescriptors() {
 		log.debug("Made it into fetchAllScheduleDescriptors");
 		List<com.reminderer.remindererservices.service.schedule.ScheduleDescriptor> scheduleDescriptors = scheduleDescriptorDaoFactory
 				.toScheduleDescriptors(this.scheduleDescriptorRepository.findAll());
@@ -89,13 +89,13 @@ public class ScheduleDescriptorDaoServiceImpl implements ScheduleDescriptorDaoSe
 	}
 
 	@Override
-	public com.reminderer.remindererservices.service.schedule.ScheduleDescriptor fetchScheduleDescriptorById(Long id) {
+	public com.reminderer.remindererservices.service.schedule.ScheduleDescriptor getScheduleDescriptorById(Long id) {
 		log.debug("Made it into fetchScheduleDescriptorById; id: " + id);
 		Optional<ScheduleDescriptor> optionalScheduleDescriptorDao = this.scheduleDescriptorRepository.findById(id);
 
 		if (optionalScheduleDescriptorDao.isEmpty()) {
 			log.info("fetchScheduleDescriptorById: Could not find ScheduleDescriptor at id: " + id);
-			return null;
+			throw new IllegalArgumentException("Could not find ScheduleDescriptor at id:" + id );
 		}
 
 		com.reminderer.remindererservices.service.schedule.ScheduleDescriptor scheduleDescriptor = this.scheduleDescriptorDaoFactory

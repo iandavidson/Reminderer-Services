@@ -4,9 +4,9 @@ import java.util.List;
 
 public interface ScheduleDescriptorDaoService {
 
-	List<ScheduleDescriptor> fetchAllScheduleDescriptors();
+	List<ScheduleDescriptor> getAllScheduleDescriptors();
 	Long createScheduleDescriptor(ScheduleDescriptor scheduleDescriptor);
-	ScheduleDescriptor fetchScheduleDescriptorById(Long id);
+	ScheduleDescriptor getScheduleDescriptorById(Long id);
 	Boolean deleteScheduleDescriptor(Long id);
 	
 	//Add soon -> fetchAllScheduleDescriptorsByTenantId(TenantId tenantId)
